@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DuoNote 손글씨 다이어리 개인정보 처리방침 (한국어 / English)">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#2C3A57" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#27324D" media="(prefers-color-scheme: dark)">
+<title>DuoNote — 개인정보 처리방침 / Privacy Policy</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #F7F1E6;
+    --paper: #FFFDF8;
+    --text: #232A3A;
+    --muted: #6F6A60;
+    --line: #E7DCC8;
+    --heading: #2C3A57;
+    --link: #2C3A57;
+    --link-line: #C9A86B;
+    --cover: #2C3A57;
+    --cover-text: #F7F1E6;
+    --stitch: rgba(247, 241, 230, 0.38);
+    --ribbon: #A4483B;
+    --chip: #F1E8D6;
+    --note-bg: #F6EEDF;
+    --note-line: #E3D2B2;
+    --shadow: 0 1px 2px rgba(44, 58, 87, 0.06), 0 18px 36px -24px rgba(44, 58, 87, 0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #11161F;
+      --paper: #1A2130;
+      --text: #ECE4D4;
+      --muted: #A9A497;
+      --line: #2E3749;
+      --heading: #F3E7D0;
+      --link: #E4C58E;
+      --link-line: rgba(228, 197, 142, 0.55);
+      --cover: #27324D;
+      --cover-text: #F7F1E6;
+      --stitch: rgba(247, 241, 230, 0.26);
+      --ribbon: #B5584B;
+      --chip: #253046;
+      --note-bg: #202A3B;
+      --note-line: #36425A;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 36px -24px rgba(0, 0, 0, 0.7);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    margin: 0;
+    padding: 40px 16px 48px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .book { max-width: 760px; margin: 0 auto; }
+
+  /* Leather cover */
+  .cover {
+    position: relative;
+    padding: 28px 36px 24px;
+    border-radius: 18px 18px 0 0;
+    background-color: var(--cover);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.12));
+    color: var(--cover-text);
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    inset: 8px 8px 0;
+    border: 1.5px dashed var(--stitch);
+    border-bottom: 0;
+    border-radius: 12px 12px 0 0;
+    pointer-events: none;
+  }
+  .ribbon {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    width: 14px;
+    height: 46px;
+    background: var(--ribbon);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  }
+  .brand { position: relative; display: inline-flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+  .mark {
+    flex: none;
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    display: grid; place-items: center;
+    background: var(--cover-text);
+    color: #2C3A57;
+  }
+  .mark svg { width: 26px; height: 26px; }
+  .brand-name {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+  .brand-sub { font-size: 13px; opacity: 0.78; line-height: 1.4; }
+  .site-nav { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .site-nav a {
+    color: var(--cover-text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 6px 12px;
+    border: 1px solid rgba(247, 241, 230, 0.3);
+    border-radius: 999px;
+  }
+  .site-nav a:hover { background: rgba(247, 241, 230, 0.12); }
+  .site-nav a[aria-current="page"] { background: var(--cover-text); color: #2C3A57; border-color: transparent; }
+
+  /* Paper */
+  .page {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-top: 0;
+    border-radius: 0 0 18px 18px;
+    padding: 40px 44px 44px;
+    box-shadow: var(--shadow);
+  }
+  section[id] { scroll-margin-top: 16px; }
+  .langnav { display: flex; gap: 8px; margin: 0 0 20px; font-size: 13px; }
+  .langnav a {
+    padding: 4px 11px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--muted);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .langnav a[aria-current="true"] { background: var(--chip); border-color: var(--chip); color: var(--heading); }
+  h1 { margin: 0 0 6px; font-size: 28px; line-height: 1.3; font-weight: 800; letter-spacing: -0.01em; color: var(--heading); }
+  .meta { margin: 0 0 28px; font-size: 13px; color: var(--muted); }
+  h2 {
+    margin: 36px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--heading);
+  }
+  h3 { margin: 26px 0 6px; font-size: 16px; line-height: 1.5; font-weight: 700; color: var(--heading); }
+  p, li { font-size: 15.5px; }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin: 6px 0; }
+  a { color: var(--link); text-decoration-color: var(--link-line); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-color: currentColor; }
+  .path {
+    padding: 1px 7px;
+    border-radius: 6px;
+    background: var(--chip);
+    font-weight: 600;
+    font-size: 0.95em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .note {
+    margin: 14px 0;
+    padding: 14px 16px;
+    border: 1px solid var(--note-line);
+    border-left: 4px solid var(--heading);
+    border-radius: 10px;
+    background: var(--note-bg);
+    font-size: 15px;
+  }
+  .note p:last-child { margin-bottom: 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 8px; }
+  .btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border: 1px solid var(--cover);
+    border-radius: 10px;
+    background: var(--cover);
+    color: var(--cover-text);
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+  .btn.secondary { background: transparent; border-color: var(--line); color: var(--heading); }
+  .btn:hover { filter: brightness(1.08); }
+  .faq h3 { margin-top: 24px; }
+  .faq p { margin-bottom: 0; }
+  .divider { height: 0; margin: 56px 0 40px; border: 0; border-top: 1px dashed var(--line); }
+  footer { max-width: 760px; margin: 20px auto 0; text-align: center; font-size: 13px; color: var(--muted); }
+  footer a { color: inherit; }
+
+  @media (max-width: 600px) {
+    body { padding: 16px 16px 32px; }
+    .cover { padding: 22px 20px 18px; border-radius: 14px 14px 0 0; }
+    .cover::before { inset: 6px 6px 0; border-radius: 10px 10px 0 0; }
+    .ribbon { right: 22px; height: 38px; }
+    .page { padding: 28px 20px 32px; border-radius: 0 0 14px 14px; }
+    h1 { font-size: 24px; }
+    .divider { margin: 44px 0 32px; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .site-nav, .langnav, .ribbon { display: none; }
+    .page { box-shadow: none; border: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="book">
+  <header class="cover">
+    <span class="ribbon" aria-hidden="true"></span>
+    <a class="brand" href="index.html">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.6C10.2 5.3 7.6 4.7 3.8 4.9v13.4c3.8-.2 6.4.4 8.2 1.7 1.8-1.3 4.4-1.9 8.2-1.7V4.9c-3.8-.2-6.4.4-8.2 1.7z"/><path d="M12 6.6V20"/><path d="M6.4 8.7c1.5 0 2.7.2 3.7.6M6.4 11.7c1.5 0 2.7.2 3.7.6M13.9 9.3c1-.4 2.2-.6 3.7-.6"/></svg></span>
+      <span>
+        <span class="brand-name">DuoNote</span><br>
+        <span class="brand-sub">손글씨 다이어리 · Handwriting Diary</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="DuoNote">
+        <a href="index.html" aria-current="page">개인정보 처리방침 · Privacy</a>
+        <a href="support.html">지원 · Support</a>
+        <a href="delete-account.html">계정 삭제 · Delete Account</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <!-- ============= 한국어 ============= -->
+    <section id="ko" lang="ko">
+      <nav class="langnav" aria-label="언어 / Language">
+        <a href="#ko" aria-current="true">한국어</a>
+        <a href="#en" hreflang="en">English</a>
+      </nav>
+      <h1>개인정보 처리방침</h1>
+      <p class="meta">시행일: 2026년 11월 9일</p>
+
+      <h2>1. 로그인 없이 쓸 때</h2>
+      <p>DuoNote 의 다이어리는 이 기기에 저장돼요. 로그인하지 않으면 어떤 내용도 서버로 보내지 않아요.</p>
+
+      <h2>2. Apple 로 로그인할 때 수집하는 정보</h2>
+      <p>Apple 이 알려 주는 사용자 식별자, 이메일 주소(가린 이메일 포함, 알려 준 경우), 처음 로그인할 때의 이름을 계정을 만들고 유지하려고 저장해요.</p>
+      <p>AI 기능을 쓰면 사용 기록(어떤 기능을, 어떤 모델로, 토큰 몇 개를 썼는지)을 남겨요. 내용은 남기지 않아요.</p>
+
+      <h2>3. 다이어리 백업과 동기화</h2>
+      <p>로그인하면 다이어리를 이 기기에서 암호화한 뒤 서버에 백업해요(종단간 암호화). 서버에는 열어 볼 수 없는 암호문만 저장되고, 서버는 레코드 수·대략적인 크기·시각 같은 정보만 알 수 있어요.</p>
+      <p>암호화 키는 iCloud 키체인과 복구 키에만 있어요. 페이지에 기록한 위치(선택)도 페이지와 함께 암호화돼요.</p>
+
+      <h2>4. AI 기능(제3자 AI)</h2>
+      <p>AI 기능(요약·전사·번역·질문 등)은 Anthropic 의 Claude 가 처리해요. 버튼을 직접 누를 때만, 그 요청에 필요한 내용이 DuoNote 서버를 거쳐 Anthropic 으로 전송돼요.</p>
+      <p>보내는 내용: 고른 페이지(또는 다이어리 전체)의 글, 손글씨 전사 때는 페이지 이미지, '질문' 때는 관련 있는 장 최대 12쪽. 지금 열어 둔 다이어리는 잠겨 있어도 함께 보낼 수 있어요.</p>
+      <div class="note">
+        <p>이렇게 보낸 내용은 종단간 암호화 밖으로 나가요. DuoNote 서버는 내용을 저장하지 않고 사용량(기능·토큰 수)만 기록해요. Anthropic 은 자체 정책에 따라 보통 30일 안에 삭제하고(정책 위반으로 표시된 내용은 더 오래 보관될 수 있어요) 모델 학습에 쓰지 않아요.</p>
+      </div>
+      <p>처음 AI 기능을 쓸 때 동의를 받고, <span class="path">설정 › AI</span> 에서 철회할 수 있어요.</p>
+
+      <h2>5. 카메라·사진·위치</h2>
+      <p>카메라와 사진은 직접 고른 사진·스캔을 페이지에 넣을 때만 써요. 위치는 '쓴 장소 기억하기'를 켰을 때만 기록해요.</p>
+
+      <h2>6. 추적·광고 없음</h2>
+      <p>DuoNote 는 광고, 추적, 외부 분석·오류 수집 도구를 쓰지 않고, 정보를 팔거나 다른 앱과 연결하지 않아요.</p>
+
+      <h2>7. 보관과 삭제</h2>
+      <p><span class="path">설정 › 계정 › 계정 삭제</span>를 누르면 서버의 계정·백업·파일·사용 기록을 바로 지우고, Apple 로그인 연결 해제를 요청하며, 이 기기에서 그 계정의 암호화 키를 지워요. 이 기기의 다이어리는 남아요(앱을 지우면 함께 지워져요).</p>
+      <p><a href="delete-account.html#ko">계정 삭제 안내 보기</a></p>
+
+      <h2>8. 문의</h2>
+      <p><span class="path">설정 › 정보 › 지원·문의</span>로 연락해 주세요. 이 방침이 바뀌면 앱과 이 페이지에 알려요.</p>
+      <p>문의: <a href="mailto:jihundev94@gmail.com?subject=DuoNote%20%EB%AC%B8%EC%9D%98">jihundev94@gmail.com</a></p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ============= English ============= -->
+    <section id="en" lang="en">
+      <nav class="langnav" aria-label="Language / 언어">
+        <a href="#ko" hreflang="ko">한국어</a>
+        <a href="#en" aria-current="true">English</a>
+      </nav>
+      <h1>Privacy Policy</h1>
+      <p class="meta">Effective: November 9, 2026</p>
+
+      <h2>1. Without signing in</h2>
+      <p>Your DuoNote diary is stored on this device. If you don't sign in, nothing is sent to a server.</p>
+
+      <h2>2. What we collect when you sign in with Apple</h2>
+      <p>To create and keep your account we store the user identifier Apple gives us, your email address (including a hidden relay address, if shared) and the name shared at first sign-in.</p>
+      <p>When you use AI features we keep a usage record (which feature, which model, how many tokens). We don't keep the content.</p>
+
+      <h2>3. Diary backup and sync</h2>
+      <p>When you sign in, your diary is encrypted on this device before it is backed up (end-to-end encryption). The server stores only ciphertext it can't open; it can see only things like the number of records, their approximate size and times.</p>
+      <p>The encryption key lives only in your iCloud Keychain and your recovery key. A location saved on a page (optional) is encrypted with the page.</p>
+
+      <h2>4. AI features (third-party AI)</h2>
+      <p>AI features (summaries, transcription, translation, questions and more) are processed by Claude from Anthropic. Only when you tap a button, the content that request needs is sent through the DuoNote server to Anthropic.</p>
+      <p>What is sent: the text of the page you chose (or the whole diary), the page image for handwriting transcription, and for Ask up to 12 related pages. The diary you have open can be included even if it is locked.</p>
+      <div class="note">
+        <p>Content sent this way leaves end-to-end encryption. The DuoNote server doesn't store it and records only usage (feature and token counts). Under its own policy Anthropic normally deletes it within 30 days (content flagged for policy violations may be kept longer) and doesn't use it to train models.</p>
+      </div>
+      <p>We ask for your consent the first time you use an AI feature, and you can withdraw it in <span class="path">Settings › AI</span>.</p>
+
+      <h2>5. Camera, photos and location</h2>
+      <p>The camera and photos are used only to put photos or scans you choose onto a page. Location is recorded only if you turn on Remember Where I Wrote.</p>
+
+      <h2>6. No tracking or ads</h2>
+      <p>DuoNote uses no ads, tracking, or third-party analytics or crash reporting, and never sells your information or links it with other apps.</p>
+
+      <h2>7. Retention and deletion</h2>
+      <p><span class="path">Settings › Account › Delete Account</span> immediately erases your account, backups, files and usage records on the server, asks Apple to disconnect Sign in with Apple, and removes that account's encryption key from this device. The diary on this device stays (deleting the app removes it).</p>
+      <p><a href="delete-account.html#en">How to delete your account</a></p>
+
+      <h2>8. Contact</h2>
+      <p>Reach us from <span class="path">Settings › About › Support</span>. If this policy changes, we'll say so in the app and on this page.</p>
+      <p>Contact: <a href="mailto:jihundev94@gmail.com?subject=DuoNote%20Support">jihundev94@gmail.com</a></p>
+    </section>
+  </main>
+</div>
+
+<footer>© 2026 Jihun Lim · DuoNote · <a href="mailto:jihundev94@gmail.com">jihundev94@gmail.com</a></footer>
+</body>
+</html>

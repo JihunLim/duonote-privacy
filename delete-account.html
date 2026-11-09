@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DuoNote 계정과 서버 데이터를 지우는 방법 (한국어 / English)">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#2C3A57" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#27324D" media="(prefers-color-scheme: dark)">
+<title>DuoNote — 계정 및 데이터 삭제 / Account &amp; Data Deletion</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #F7F1E6;
+    --paper: #FFFDF8;
+    --text: #232A3A;
+    --muted: #6F6A60;
+    --line: #E7DCC8;
+    --heading: #2C3A57;
+    --link: #2C3A57;
+    --link-line: #C9A86B;
+    --cover: #2C3A57;
+    --cover-text: #F7F1E6;
+    --stitch: rgba(247, 241, 230, 0.38);
+    --ribbon: #A4483B;
+    --chip: #F1E8D6;
+    --note-bg: #F6EEDF;
+    --note-line: #E3D2B2;
+    --shadow: 0 1px 2px rgba(44, 58, 87, 0.06), 0 18px 36px -24px rgba(44, 58, 87, 0.35);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #11161F;
+      --paper: #1A2130;
+      --text: #ECE4D4;
+      --muted: #A9A497;
+      --line: #2E3749;
+      --heading: #F3E7D0;
+      --link: #E4C58E;
+      --link-line: rgba(228, 197, 142, 0.55);
+      --cover: #27324D;
+      --cover-text: #F7F1E6;
+      --stitch: rgba(247, 241, 230, 0.26);
+      --ribbon: #B5584B;
+      --chip: #253046;
+      --note-bg: #202A3B;
+      --note-line: #36425A;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 18px 36px -24px rgba(0, 0, 0, 0.7);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  body {
+    margin: 0;
+    padding: 40px 16px 48px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .book { max-width: 760px; margin: 0 auto; }
+
+  /* Leather cover */
+  .cover {
+    position: relative;
+    padding: 28px 36px 24px;
+    border-radius: 18px 18px 0 0;
+    background-color: var(--cover);
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.12));
+    color: var(--cover-text);
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    inset: 8px 8px 0;
+    border: 1.5px dashed var(--stitch);
+    border-bottom: 0;
+    border-radius: 12px 12px 0 0;
+    pointer-events: none;
+  }
+  .ribbon {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    width: 14px;
+    height: 46px;
+    background: var(--ribbon);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  }
+  .brand { position: relative; display: inline-flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+  .mark {
+    flex: none;
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    display: grid; place-items: center;
+    background: var(--cover-text);
+    color: #2C3A57;
+  }
+  .mark svg { width: 26px; height: 26px; }
+  .brand-name {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+  .brand-sub { font-size: 13px; opacity: 0.78; line-height: 1.4; }
+  .site-nav { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .site-nav a {
+    color: var(--cover-text);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 6px 12px;
+    border: 1px solid rgba(247, 241, 230, 0.3);
+    border-radius: 999px;
+  }
+  .site-nav a:hover { background: rgba(247, 241, 230, 0.12); }
+  .site-nav a[aria-current="page"] { background: var(--cover-text); color: #2C3A57; border-color: transparent; }
+
+  /* Paper */
+  .page {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-top: 0;
+    border-radius: 0 0 18px 18px;
+    padding: 40px 44px 44px;
+    box-shadow: var(--shadow);
+  }
+  section[id] { scroll-margin-top: 16px; }
+  .langnav { display: flex; gap: 8px; margin: 0 0 20px; font-size: 13px; }
+  .langnav a {
+    padding: 4px 11px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--muted);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .langnav a[aria-current="true"] { background: var(--chip); border-color: var(--chip); color: var(--heading); }
+  h1 { margin: 0 0 6px; font-size: 28px; line-height: 1.3; font-weight: 800; letter-spacing: -0.01em; color: var(--heading); }
+  .meta { margin: 0 0 28px; font-size: 13px; color: var(--muted); }
+  h2 {
+    margin: 36px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--heading);
+  }
+  h3 { margin: 26px 0 6px; font-size: 16px; line-height: 1.5; font-weight: 700; color: var(--heading); }
+  p, li { font-size: 15.5px; }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin: 6px 0; }
+  a { color: var(--link); text-decoration-color: var(--link-line); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { text-decoration-color: currentColor; }
+  .path {
+    padding: 1px 7px;
+    border-radius: 6px;
+    background: var(--chip);
+    font-weight: 600;
+    font-size: 0.95em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .note {
+    margin: 14px 0;
+    padding: 14px 16px;
+    border: 1px solid var(--note-line);
+    border-left: 4px solid var(--heading);
+    border-radius: 10px;
+    background: var(--note-bg);
+    font-size: 15px;
+  }
+  .note p:last-child { margin-bottom: 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 8px; }
+  .btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border: 1px solid var(--cover);
+    border-radius: 10px;
+    background: var(--cover);
+    color: var(--cover-text);
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+  }
+  .btn.secondary { background: transparent; border-color: var(--line); color: var(--heading); }
+  .btn:hover { filter: brightness(1.08); }
+  .faq h3 { margin-top: 24px; }
+  .faq p { margin-bottom: 0; }
+  .divider { height: 0; margin: 56px 0 40px; border: 0; border-top: 1px dashed var(--line); }
+  footer { max-width: 760px; margin: 20px auto 0; text-align: center; font-size: 13px; color: var(--muted); }
+  footer a { color: inherit; }
+
+  @media (max-width: 600px) {
+    body { padding: 16px 16px 32px; }
+    .cover { padding: 22px 20px 18px; border-radius: 14px 14px 0 0; }
+    .cover::before { inset: 6px 6px 0; border-radius: 10px 10px 0 0; }
+    .ribbon { right: 22px; height: 38px; }
+    .page { padding: 28px 20px 32px; border-radius: 0 0 14px 14px; }
+    h1 { font-size: 24px; }
+    .divider { margin: 44px 0 32px; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .site-nav, .langnav, .ribbon { display: none; }
+    .page { box-shadow: none; border: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="book">
+  <header class="cover">
+    <span class="ribbon" aria-hidden="true"></span>
+    <a class="brand" href="index.html">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.6C10.2 5.3 7.6 4.7 3.8 4.9v13.4c3.8-.2 6.4.4 8.2 1.7 1.8-1.3 4.4-1.9 8.2-1.7V4.9c-3.8-.2-6.4.4-8.2 1.7z"/><path d="M12 6.6V20"/><path d="M6.4 8.7c1.5 0 2.7.2 3.7.6M6.4 11.7c1.5 0 2.7.2 3.7.6M13.9 9.3c1-.4 2.2-.6 3.7-.6"/></svg></span>
+      <span>
+        <span class="brand-name">DuoNote</span><br>
+        <span class="brand-sub">손글씨 다이어리 · Handwriting Diary</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="DuoNote">
+        <a href="index.html">개인정보 처리방침 · Privacy</a>
+        <a href="support.html">지원 · Support</a>
+        <a href="delete-account.html" aria-current="page">계정 삭제 · Delete Account</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <!-- ============= 한국어 ============= -->
+    <section id="ko" lang="ko">
+      <nav class="langnav" aria-label="언어 / Language">
+        <a href="#ko" aria-current="true">한국어</a>
+        <a href="#en" hreflang="en">English</a>
+      </nav>
+      <h1>계정 및 데이터 삭제</h1>
+      <p class="meta">앱: DuoNote · 개발자: Jihun Lim · 최종 업데이트: 2026년 11월 9일</p>
+
+      <p>DuoNote 계정은 앱 안에서 언제든 지울 수 있어요. 로그인하지 않고 썼다면 서버로 보낸 내용이 없어서 서버에 지울 계정도 없어요.</p>
+
+      <h2>앱에서 삭제하기 (권장)</h2>
+      <ol>
+        <li>DuoNote 앱을 열어요. 다이어리가 열려 있으면 왼쪽 위 집 모양 버튼으로 닫아요.</li>
+        <li>표지에서 <strong>설정</strong>을 열어요.</li>
+        <li><span class="path">설정 › 계정 › 계정 삭제</span>를 눌러요.</li>
+      </ol>
+
+      <h2>지워지는 것</h2>
+      <ul>
+        <li>서버의 계정 정보(Apple 사용자 식별자, 이메일 주소, 이름) — 바로 지워요.</li>
+        <li>서버에 백업된 다이어리(암호문)와 파일 — 바로 지워요.</li>
+        <li>AI 사용 기록(어떤 기능을, 어떤 모델로, 토큰 몇 개를 썼는지) — 바로 지워요.</li>
+        <li>Apple 로그인 연결 — Apple 에 연결 해제를 요청해요.</li>
+        <li>이 기기에 있는 그 계정의 암호화 키 — 지워요.</li>
+      </ul>
+
+      <h2>남는 것</h2>
+      <ul>
+        <li><strong>이 기기의 다이어리</strong>는 그대로 남아요. 앱을 지우면 함께 지워져요.</li>
+        <li>AI 기능으로 보냈던 내용은 DuoNote 서버에 저장되지 않아요. Anthropic 은 자체 정책에 따라 보통 30일 안에 삭제해요(정책 위반으로 표시된 내용은 더 오래 보관될 수 있어요).</li>
+      </ul>
+
+      <h2>앱을 쓸 수 없을 때 (이메일 요청)</h2>
+      <p>앱을 이미 지웠거나 앱에서 삭제할 수 없다면, 아래 주소로 계정 삭제를 요청해 주세요. 어느 계정인지 알 수 있도록 Apple 로 로그인할 때 쓴 이메일 주소를 함께 적어 주세요.</p>
+      <div class="actions">
+        <a class="btn" href="mailto:jihundev94@gmail.com?subject=DuoNote%20%EA%B3%84%EC%A0%95%20%EC%82%AD%EC%A0%9C%20%EC%9A%94%EC%B2%AD">jihundev94@gmail.com</a>
+      </div>
+      <p>앱을 다시 설치하고 같은 Apple ID 로 로그인한 뒤 <span class="path">설정 › 계정 › 계정 삭제</span>로 직접 지울 수도 있어요.</p>
+
+      <p class="meta">자세한 처리 방식은 <a href="index.html#ko">개인정보 처리방침</a> 7항을 보세요.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ============= English ============= -->
+    <section id="en" lang="en">
+      <nav class="langnav" aria-label="Language / 언어">
+        <a href="#ko" hreflang="ko">한국어</a>
+        <a href="#en" aria-current="true">English</a>
+      </nav>
+      <h1>Account &amp; Data Deletion</h1>
+      <p class="meta">App: DuoNote · Developer: Jihun Lim · Last updated: November 9, 2026</p>
+
+      <p>You can delete your DuoNote account in the app at any time. If you never signed in, nothing was sent to a server, so there is no server account to delete.</p>
+
+      <h2>Delete in the app (recommended)</h2>
+      <ol>
+        <li>Open DuoNote. If a diary is open, close it with the house button at the top left.</li>
+        <li>Open <strong>Settings</strong> from the cover.</li>
+        <li>Tap <span class="path">Settings › Account › Delete Account</span>.</li>
+      </ol>
+
+      <h2>What is deleted</h2>
+      <ul>
+        <li>Your account on the server (the Apple user identifier, email address and name) — erased immediately.</li>
+        <li>Your encrypted diary backups and files on the server — erased immediately.</li>
+        <li>Your AI usage records (which feature, which model, how many tokens) — erased immediately.</li>
+        <li>Sign in with Apple — we ask Apple to disconnect it.</li>
+        <li>That account's encryption key on this device — removed.</li>
+      </ul>
+
+      <h2>What stays</h2>
+      <ul>
+        <li><strong>The diary on this device</strong> stays. Deleting the app removes it.</li>
+        <li>Content you sent with AI features was never stored on the DuoNote server. Under its own policy Anthropic normally deletes it within 30 days (content flagged for policy violations may be kept longer).</li>
+      </ul>
+
+      <h2>If you can't use the app (email request)</h2>
+      <p>If you've already deleted the app or can't delete your account from it, email us to request deletion. Please include the email address you used with Sign in with Apple so we can find your account.</p>
+      <div class="actions">
+        <a class="btn" href="mailto:jihundev94@gmail.com?subject=DuoNote%20Account%20Deletion%20Request">jihundev94@gmail.com</a>
+      </div>
+      <p>You can also reinstall the app, sign in with the same Apple ID and use <span class="path">Settings › Account › Delete Account</span>.</p>
+
+      <p class="meta">See section 7 of the <a href="index.html#en">Privacy Policy</a> for details.</p>
+    </section>
+  </main>
+</div>
+
+<footer>© 2026 Jihun Lim · DuoNote · <a href="mailto:jihundev94@gmail.com">jihundev94@gmail.com</a></footer>
+</body>
+</html>
