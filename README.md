@@ -46,8 +46,9 @@ GitHub issues are public — please don't include personal information.
 - 펜·형광펜·지우개·올가미, Apple Pencil 지원
 - 스티커, 사진, 카메라, 문서 스캔, PDF 가져오기
 - 카테고리별 인덱스 탭과 속지, 먼슬리 달력, 빠른 메모
-- 로그인 없이 기기에서 사용, Apple 로그인 시 종단간 암호화 백업·동기화
-- AI 요약·전사·번역·질문 (Anthropic Claude, 동의 후 버튼을 누를 때만)
+- 로그인 없이 기기에서 사용, Apple 로그인 시 종단간 암호화 백업·동기화(서버도 읽을 수 없음)
+- 기기를 바꿔도 같은 Apple ID 로 로그인하면 다이어리가 자동으로 돌아옴(iCloud 키체인 / 복구 키)
+- AI 기능 없음 — 다이어리를 어떤 제3자에게도 보내지 않음
 
 ## 페이지
 
